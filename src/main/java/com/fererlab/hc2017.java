@@ -3,12 +3,7 @@ package com.fererlab;
 import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class hc2017 {
 	public static void main(String[] args) throws Exception {
@@ -16,7 +11,7 @@ public class hc2017 {
 	}
 
 	private void start() throws Exception {
-		URI uri = App.class.getClassLoader().getResource("input.txt").toURI();
+		URI uri = App.class.getClassLoader().getResource("trending_today.in").toURI();
 		List<String> lines = Files.readAllLines(Paths.get(uri));
 
 		int currentLine = 0;
@@ -104,10 +99,20 @@ public class hc2017 {
 			}
 
 		}
-		
+
+
+
+		HashMap<Integer, HashSet<Video>> cacheVideoSet = new HashMap<>();
 		for (Cache c : caches) {
 			System.out.println(c.toString());
-		}
+
+            cacheVideoSet.put(c.index, new HashSet<Video>(c.videos));
+
+
+
+            Writer.writeToFile("trending_output.txt", cacheVideoSet);
+
+        }
 
 	}
 

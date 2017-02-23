@@ -12,33 +12,16 @@ import java.util.Map;
  */
 public class Writer {
 
-    public static void main(String[] args) {
 
-        HashMap<Integer, HashSet<Integer>> cacheVideoSet = new HashMap<>();
-        HashSet<Integer> set1 = new HashSet<>();
-        set1.add(1);
-        set1.add(3);
-        set1.add(5);
-
-        cacheVideoSet.put(0,set1);
-
-        HashSet<Integer> set2 = new HashSet<>();
-        set2.add(2);
-
-        cacheVideoSet.put(2,set2);
-
-        writeToFile("output.txt", cacheVideoSet);
-    }
-
-    public static void writeToFile(String filename, HashMap<Integer, HashSet<Integer>> cacheVideoSet){
+    public static void writeToFile(String filename, HashMap<Integer, HashSet<Video>> cacheVideoSet){
 
         try (FileWriter fw = new FileWriter(filename); BufferedWriter bw = new BufferedWriter(fw); ) {
             bw.write(cacheVideoSet.size()+ "\n");
 
-            for(Map.Entry<Integer, HashSet<Integer>> entry : cacheVideoSet.entrySet()){
+            for(Map.Entry<Integer, HashSet<Video>> entry : cacheVideoSet.entrySet()){
                 bw.write(entry.getKey() + " ");
-                for(Integer integer : entry.getValue()){
-                    bw.write(integer + " ");
+                for(Video video : entry.getValue()){
+                    bw.write(video.id + " ");
                 }
                 bw.write(" \n");
             }
