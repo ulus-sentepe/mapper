@@ -3,44 +3,44 @@ package com.fererlab;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 /**
  * Created by selcuk on 23.02.2017.
  */
 public class Writer {
 
-    public static final String FILENAME = "output.txt";
-
     public static void main(String[] args) {
 
-        HashSet<Integer>[] setArr = new HashSet[2];
-        setArr[0] = new HashSet<>();
-        setArr[0].add(1);
-        setArr[0].add(2);
-        setArr[0].add(3);
+        HashMap<Integer, HashSet<Integer>> cacheVideoSet = new HashMap<>();
+        HashSet<Integer> set1 = new HashSet<>();
+        set1.add(1);
+        set1.add(3);
+        set1.add(5);
 
-        setArr[1] = new HashSet<>();
-        setArr[1].add(6);
-        setArr[1].add(7);
-        setArr[1].add(8);
+        cacheVideoSet.put(0,set1);
 
-        writeToFile(setArr);
+        HashSet<Integer> set2 = new HashSet<>();
+        set2.add(2);
+
+        cacheVideoSet.put(2,set2);
+
+        writeToFile("output.txt", cacheVideoSet);
     }
 
-    public static void writeToFile(HashSet<Integer>[] cacheVideoSet){
+    public static void writeToFile(String filename, HashMap<Integer, HashSet<Integer>> cacheVideoSet){
 
-        try (FileWriter fw = new FileWriter(FILENAME); BufferedWriter bw = new BufferedWriter(fw); ) {
-            bw.write(cacheVideoSet.length+ "\n");
+        try (FileWriter fw = new FileWriter(filename); BufferedWriter bw = new BufferedWriter(fw); ) {
+            bw.write(cacheVideoSet.size()+ "\n");
 
-            int cacheIdx = 0;
-            for(HashSet<Integer> videos : cacheVideoSet){
-                bw.write(cacheIdx + " ");
-                for(Integer integer : videos){
+            for(Map.Entry<Integer, HashSet<Integer>> entry : cacheVideoSet.entrySet()){
+                bw.write(entry.getKey() + " ");
+                for(Integer integer : entry.getValue()){
                     bw.write(integer + " ");
                 }
                 bw.write(" \n");
-                cacheIdx++;
             }
 
         } catch (IOException e) {
