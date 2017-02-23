@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Endpoint implements DataType {
-    @Key
-    Integer index;
     Integer latencyToDataCenter;
     Integer epNumbers;
     public Map<Integer, Integer> epMap = new HashMap<>();

@@ -12,7 +12,7 @@ public class hc2017 {
     }
 
     private void start() throws Exception {
-        URI uri = App.class.getClassLoader().getResource("example.in").toURI();
+        URI uri = App.class.getClassLoader().getResource("input.txt").toURI();
         List<String> lines = Files.readAllLines(Paths.get(uri));
 
         int currentLine = 0;
