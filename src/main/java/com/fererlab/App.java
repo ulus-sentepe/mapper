@@ -12,8 +12,13 @@ import java.util.Map;
 public class App {
     public static void main(String[] args) {
         App app = new App();
-        app.withKey();
-        app.withOutKey();
+//        app.withKey();
+//        app.withOutKey();
+        app.hc2016();
+    }
+
+    private void hc2016() {
+
     }
 
     private void withOutKey() {
