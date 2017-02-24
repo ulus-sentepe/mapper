@@ -11,7 +11,7 @@ public class hc2017 {
 	}
 
 	private void start() throws Exception {
-		URI uri = App.class.getClassLoader().getResource("trending_today.in").toURI();
+		URI uri = App.class.getClassLoader().getResource("kittens.in").toURI();
 		List<String> lines = Files.readAllLines(Paths.get(uri));
 
 		int currentLine = 0;
@@ -74,11 +74,14 @@ public class hc2017 {
 		for (Endpoint e : endpoints) {
 			for (Integer cacheLatencyKey : e.epMap.keySet()) {
 				Integer cacheLatency = e.epMap.get(cacheLatencyKey);
-				for (Request r : requests) {
+				for (Request r : e.requests) {
 
 					double score = solver.evaluate(r.numberOfRequests, cacheLatency, e.latencyToDataCenter,
 							r.video.size, initialCacheSize);
-					pqueue.add(new SolverData(e.id, r.video, score, cacheLatencyKey));
+					if(score>0){
+						pqueue.add(new SolverData(e.id, r.video, score, cacheLatencyKey));
+					}
+
 				}
 			}
 
@@ -104,14 +107,9 @@ public class hc2017 {
 
 		HashMap<Integer, HashSet<Video>> cacheVideoSet = new HashMap<>();
 		for (Cache c : caches) {
-			System.out.println(c.toString());
-
             cacheVideoSet.put(c.index, new HashSet<Video>(c.videos));
 
-
-
-            Writer.writeToFile("trending_output.txt", cacheVideoSet);
-
+            Writer.writeToFile("kittens.txt", cacheVideoSet);
         }
 
 	}
