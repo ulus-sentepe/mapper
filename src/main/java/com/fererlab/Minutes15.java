@@ -112,7 +112,6 @@ public class Minutes15 {
                 }
             }
         } catch (Exception omit) {
-            omit.printStackTrace();
         }
         return cacheList;
     }

@@ -21,7 +21,7 @@ public class Writer {
             for(Map.Entry<Integer, HashSet<Video>> entry : cacheVideoSet.entrySet()){
                 bw.write(entry.getKey() + " ");
                 for(Video video : entry.getValue()){
-                    bw.write(video.id + " ");
+//                    bw.write(video.id + " ");
                 }
                 bw.write(" \n");
             }

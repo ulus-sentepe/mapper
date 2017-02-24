@@ -1,14 +1,10 @@
 package com.fererlab;
 
 public class Video implements DataType {
-    
-	@Key
-	int id;
-	
-	Integer size;
+    @Key
+    Integer size;
 
-    public Video(int id,Integer videoSize) {
-        this.id = id;
-    	this.size = videoSize;
+    public Video(Integer videoSize) {
+        this.size = videoSize;
     }
 }
