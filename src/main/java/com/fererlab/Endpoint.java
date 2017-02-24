@@ -6,13 +6,15 @@ import java.util.List;
 import java.util.Map;
 
 public class Endpoint implements DataType {
+	Integer id;
     Integer latencyToDataCenter;
     Integer epNumbers;
     public Map<Integer, Integer> cacheIndexLatencyMap = new HashMap<>();
     public List<Request> requests = new ArrayList<>();
 
-    public Endpoint(Integer dcLatency, Integer epNumbers) {
+    public Endpoint(	Integer id,Integer dcLatency, Integer epNumbers) {
         latencyToDataCenter = dcLatency;
         this.epNumbers = epNumbers;
+        this.id = id;
     }
 }
